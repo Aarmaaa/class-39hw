@@ -52,15 +52,18 @@ class Game{
                      x = 500-allPlayers[plr].distance;
                      y=500;
                      
-                     players[index -1].x = x;
-                     players[index - 1].y = y;
+                     players[index-1].x=x;
+                     players[index-1].y=y;
                        
                      if(index === player.index){
                          
-                         fill("blue");
+                         fill("black");
                          textSize(25);
                          text(allPlayers[plr].name ,x-25,y+25);
-                         
+                        /* stroke(4);
+                         fill('red');
+                         ellipse(x,y,60,60);
+*/
                          
                      }
                     
@@ -90,7 +93,7 @@ class Game{
                          case 2: fruits.addImage("fruit1", fruit2_img);
                          break;
                          case 3: fruits.addImage("fruit1", fruit3_img);
-                         break; 
+                         break;
                          case 4: fruits.addImage("fruit1", fruit4_img);
                          break;
                          case 5: fruits.addImage("fruit1", fruit5_img);
@@ -101,19 +104,15 @@ class Game{
                  }
                  
                   if (player.index !== null) {
-                     //fill code here, to destroy the objects.
-                     if(players.isTouching(fruitGroup)){
-                         fruitGroup.destroy
+                     for(var i=0;i<fruitGroup.length;i++){
+                         if(fruitGroup.get(i).isTouching(players)){
+                            fruitGroup.get(i).destroy();
+                            player.score=player.score+1;
+                            player.update();
+                         }
                      }
-                  }
-                
-
-         
-         
-        
-         
-
-    }
+                     }
+}
 
     end(){
        console.log("Game Ended");
